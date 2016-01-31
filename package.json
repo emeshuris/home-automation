@@ -14,5 +14,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/emeshuris/home-automation/issues"
+  },
+  "dependencies": {
+    "connect": "^3.4.1"
   }
 }
