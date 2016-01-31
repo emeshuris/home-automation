@@ -16,6 +16,7 @@
     "url": "https://github.com/emeshuris/home-automation/issues"
   },
   "dependencies": {
+    "express": "4.13.4",
     "connect": "^3.4.1"
   }
 }
