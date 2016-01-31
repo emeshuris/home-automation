@@ -26,7 +26,6 @@ var app       = express();
 
 // input port objects for our example
 var inputs = [
-    { pin: '16', gpio: '23', value: null },
     { pin: '29', gpio: '05', value: null },
     { pin: '22', gpio: '25', value: null }
 ];
@@ -56,14 +55,6 @@ setInterval( function () {
   });
 
   gpio.read(inputs[1].pin, function (err, value) {
-    if (err) {
-      throw err;
-    }
-    console.log('read pin ' + inputs[1].pin + ' value = ' + value);
-    inputs[1].value = value.toString();
-  });
-
-  gpio.read(inputs[2].pin, function (err, value) {
     if (err) {
       throw err;
     }
