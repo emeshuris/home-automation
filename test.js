@@ -2,7 +2,7 @@ var gpio      = require('pi-gpio');
 
 var intervalId;
  var durationId;
- var gpioPin = 13;    // header pin 16 = GPIO port 23
+ var gpioPin = 16;    // header pin 16 = GPIO port 23
  
  // open pin 16 for output
 //
@@ -25,4 +25,4 @@ durationId= setTimeout( function(){
     gpio.close(gpioPin); // then Close pin 16
     process.exit(0); // and terminate the program
   });
-}, 10000000); // duration in mS
+}, 10000); // duration in mS
