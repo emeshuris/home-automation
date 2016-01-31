@@ -26,7 +26,7 @@ var app       = express();
 
 // input port objects for our example
 var inputs = [
-    { pin: '13', gpio: '2', value: null },
+    { pin: '13', gpio: '27', value: null },
     { pin: '22', gpio: '25', value: null }
 ];
 
