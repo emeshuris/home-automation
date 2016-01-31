@@ -16,7 +16,8 @@
     "url": "https://github.com/emeshuris/home-automation/issues"
   },
   "dependencies": {
+    "connect": "^3.4.1",
     "express": "4.13.4",
-    "connect": "^3.4.1"
+    "pi-gpio": "0.0.8"
   }
 }
