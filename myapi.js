@@ -62,6 +62,14 @@ setInterval( function () {
     console.log('read pin ' + inputs[1].pin + ' value = ' + value);
     inputs[1].value = value.toString();
   });
+
+  gpio.read(inputs[2].pin, function (err, value) {
+    if (err) {
+      throw err;
+    }
+    console.log('read pin ' + inputs[1].pin + ' value = ' + value);
+    inputs[1].value = value.toString();
+  });
 }, 500); // setInterval
 
 // ------------------------------------------------------------------------
