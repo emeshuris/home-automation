@@ -25,9 +25,11 @@ var gpio      = require('pi-gpio');
 var app       = express();
 
 // input port objects for our example
-var inputs = [    { pin: '16', gpio: '23', value: null },
-                  { pin: '22', gpio: '25', value: null }
-                ];
+var inputs = [
+    { pin: '16', gpio: '23', value: null },
+    { pin: '29', gpio: '05', value: null },
+    { pin: '22', gpio: '25', value: null }
+];
 
 // -----------------------------------------------------------------------
 // open GPIO ports
