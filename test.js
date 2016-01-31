@@ -1,28 +1,10 @@
-var gpio      = require('pi-gpio');
-
-var intervalId;
- var durationId;
- var gpioPin = 16;    // header pin 16 = GPIO port 23
+var gpio = require('rpi-gpio');
  
- // open pin 16 for output
-//
-gpio.open(gpioPin, "output", function(err) {
-var on = 1;
-console.log('GPIO pin '+gpioPin+' is open. toggling LED every 100 mS for 10s');
-
-intervalId = setInterval( function(){
-  gpio.write(gpioPin, on, function() { // toggle pin between high (1) and low (0)
-    on = (on + 1) % 2;
+gpio.setup(7, gpio.DIR_OUT, write);
+ 
+function write() {
+    gpio.write(7, true, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
     });
-  }, 100);
-});
-
-durationId= setTimeout( function(){
-  clearInterval(intervalId);
-  clearTimeout(durationId);
-  console.log('10 seconds blinking completed');
-  gpio.write(gpioPin, 0, function() { // turn off pin 16
-    gpio.close(gpioPin); // then Close pin 16
-    process.exit(0); // and terminate the program
-  });
-}, 10000); // duration in mS
+}
