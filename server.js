@@ -70,26 +70,8 @@ router.route('/bears')
 
 // on routes that end in /bears/:bear_id
 // ----------------------------------------------------
-router.route('/bears/:bear_id')
 
-// get the bear with that id
-/*
-    .get(function (req, res) {
-        /*
-        Bear.findById(req.params.bear_id, function (err, bear) {
-            if (err)
-                res.send(err);
-            res.json(bear);
-        });
-        */
-        var led = new Gpio(req.params.bear_id, 'out');
-        led.writeSync(0);
-        
-        res.json({ message: req.params.bear_id});// + ': ' + led.readSync() });
-        //led.unexport();
-    })
-    */
-    router.route('/bears/:bear_id/:bear_on')
+router.route('/bears/:bear_id/:bear_on')
 
 // get the bear with that id
     .get(function (req, res) {
@@ -102,7 +84,7 @@ router.route('/bears/:bear_id')
         */
         var led = new Gpio(req.params.bear_id, 'out');
         led.writeSync(req.params.bear_on);
-        
+
         res.json({ message: req.params.bear_id + ': ' + req.params.bear_on });
         //led.unexport();
     })
