@@ -6,7 +6,7 @@ var Gpio = require('onoff').Gpio, // Constructor function for Gpio objects.
 // Here synchronous methods are used. Asynchronous methods are also available. 
 iv = setInterval(function () {
   led.writeSync(led.readSync() ^ 1); // 1 = on, 0 = off :) 
-}, 200);
+}, 2000);
  
 // Stop blinking the LED and turn it off after 5 seconds. 
 setTimeout(function () {
