@@ -80,12 +80,13 @@ router.route('/bears/:bear_id')
             res.json(bear);
         });
         */
+        res.json({ message: 'hooray! welcome to our api!' });
     })
 
 // update the bear with this id
     .put(function (req, res) {
         var Gpio = require('onoff').Gpio, // Constructor function for Gpio objects. 
-            led = new Gpio(req.params.bear_id, 'out'),      // Export GPIO #14 as an output. 
+            led = new Gpio(14, 'out'),      // Export GPIO #14 as an output. 
             iv;
  
         // Toggle the state of the LED on GPIO #14 every 200ms. 
