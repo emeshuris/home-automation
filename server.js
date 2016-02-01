@@ -73,6 +73,7 @@ router.route('/bears')
 router.route('/bears/:bear_id')
 
 // get the bear with that id
+/*
     .get(function (req, res) {
         /*
         Bear.findById(req.params.bear_id, function (err, bear) {
@@ -87,7 +88,7 @@ router.route('/bears/:bear_id')
         res.json({ message: req.params.bear_id});// + ': ' + led.readSync() });
         //led.unexport();
     })
-    
+    */
     router.route('/bears/:bear_id/:bear_on')
 
 // get the bear with that id
@@ -102,7 +103,7 @@ router.route('/bears/:bear_id')
         var led = new Gpio(req.params.bear_id, 'out');
         led.writeSync(req.params.bear_on);
         
-        res.json({ message: req.params.bear_id});// + ': ' + led.readSync() });
+        res.json({ message: req.params.bear_id + ': ' + req.params.bear_on });
         //led.unexport();
     })
 
