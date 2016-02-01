@@ -54,11 +54,11 @@ router.route('/bears/:bear_id/:bear_on')
         
         led.writeSync(turnedOn);
 
-        if (req.params.bear_on == 0) {
+        if (turnedOn == 1) {
             led.unexport();
         }
 
-        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + turnedOn });
+        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
 
     })
 
