@@ -80,7 +80,10 @@ router.route('/bears/:bear_id')
             res.json(bear);
         });
         */
-        res.json({ message: 'hooray! welcome to our api!' });
+        var Gpio = require('onoff').Gpio,
+            led = new Gpio(14, 'out');
+        
+        res.json({ message: led.readSync() });
     })
 
 // update the bear with this id
