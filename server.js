@@ -83,7 +83,7 @@ router.route('/bears/:bear_id')
         var Gpio = require('onoff').Gpio,
             led = new Gpio(14, 'out');
         
-        res.json({ message: led.readSync() });
+        res.json({ message: led.readSync() ^ 0 });
     })
 
 // update the bear with this id
