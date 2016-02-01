@@ -6,6 +6,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var morgan = require('morgan');
+var Gpio = require('onoff').Gpio;
 
 // configure app
 app.use(morgan('dev')); // log requests to the console
@@ -80,8 +81,9 @@ router.route('/bears/:bear_id')
             res.json(bear);
         });
         */
-        var Gpio = require('onoff').Gpio,
-            led = new Gpio(14, 'out');
+        var led = new Gpio(req.params.bear_id, 'out');
+        led.writeSync(led.readSync() ^ 1);
+        led.unexport();
         
         res.json({ message: req.params.bear_id + ': ' + led.readSync() });
     })
@@ -96,14 +98,14 @@ router.route('/bears/:bear_id')
         // Here synchronous methods are used. Asynchronous methods are also available. 
         iv = setInterval(function () {
             led.writeSync(led.readSync() ^ 1); // 1 = on, 0 = off :) 
-        }, 2000);
+        }, 750);
  
         // Stop blinking the LED and turn it off after 5 seconds. 
         setTimeout(function () {
             clearInterval(iv); // Stop blinking 
             led.writeSync(0);  // Turn LED off. 
             led.unexport();    // Unexport GPIO and free resources 
-        }, 10000);
+        }, 1500);
     })
 
 
