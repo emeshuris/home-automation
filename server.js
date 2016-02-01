@@ -85,7 +85,7 @@ router.route('/bears/:bear_id')
         led.writeSync(1);
         
         res.json({ message: req.params.bear_id + ': ' + led.readSync() });
-        led.unexport();
+        //led.unexport();
     })
 
 // update the bear with this id
