@@ -75,18 +75,14 @@ router.route('/bears/:bear_id/:bear_on')
 
 // get the bear with that id
     .get(function (req, res) {
-        /*
-        Bear.findById(req.params.bear_id, function (err, bear) {
-            if (err)
-                res.send(err);
-            res.json(bear);
-        });
-        */
         var led = new Gpio(req.params.bear_id, 'out');
         led.writeSync(req.params.bear_on);
 
         res.json({ message: req.params.bear_id + ': ' + req.params.bear_on });
-        //led.unexport();
+        
+        if (req.params.bear_on == 0){
+            led.unexport();
+        }
     })
 
 // update the bear with this id
