@@ -40,41 +40,9 @@ router.get('/', function (req, res) {
 // ----------------------------------------------------
 router.route('/bears')
 
-// create a bear (accessed at POST http://localhost:8080/bears)
-    .post(function (req, res) {
-
-        var bear = new Bear();		// create a new instance of the Bear model
-        bear.name = req.body.name;  // set the bears name (comes from the request)
-
-        bear.save(function (err) {
-            if (err)
-                res.send(err);
-
-            res.json({ message: 'Bear created!' });
-        });
-
-
-    })
-
-// get all the bears (accessed at GET http://localhost:8080/api/bears)
-    .get(function (req, res) {
-        /*
-        Bear.find(function (err, bears) {
-            if (err)
-                res.send(err);
-
-            res.json(bears);
-        });
-        */
-    });
-
-// on routes that end in /bears/:bear_id
-// ----------------------------------------------------
-
 router.route('/bears/:bear_id/:bear_on')
 
-// get the bear with that id
-    .get(function (req, res) {
+    .put(function (req, res) {
         var led = new Gpio(req.params.bear_id, 'out');
         led.writeSync(req.params.bear_on);
 
@@ -84,27 +52,6 @@ router.route('/bears/:bear_id/:bear_on')
             led.unexport();
         }
     })
-
-// update the bear with this id
-    .put(function (req, res) {
-        var Gpio = require('onoff').Gpio, // Constructor function for Gpio objects. 
-            led = new Gpio(14, 'out'),      // Export GPIO #14 as an output. 
-            iv;
- 
-        // Toggle the state of the LED on GPIO #14 every 200ms. 
-        // Here synchronous methods are used. Asynchronous methods are also available. 
-        iv = setInterval(function () {
-            led.writeSync(led.readSync() ^ 1); // 1 = on, 0 = off :) 
-        }, 750);
- 
-        // Stop blinking the LED and turn it off after 5 seconds. 
-        setTimeout(function () {
-            clearInterval(iv); // Stop blinking 
-            led.writeSync(0);  // Turn LED off. 
-            led.unexport();    // Unexport GPIO and free resources 
-        }, 1500);
-    })
-
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);
