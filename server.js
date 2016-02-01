@@ -48,13 +48,16 @@ router.route('/bears/:bear_id/:bear_on')
     .put(function (req, res) {
         var led = new Gpio(req.params.bear_id, 'out');
 
-        led.writeSync(req.params.bear_on);
+        if (req.params.bear_on == 0) {
+            led.writeSync(0);
+            led.unexport();
+        }
+        else {
+            led.writeSync(1);
+        }
 
         res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
 
-        if (req.params.bear_on == 0) {
-            //led.unexport();
-        }
     })
 
 // REGISTER OUR ROUTES -------------------------------
