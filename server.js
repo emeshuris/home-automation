@@ -53,7 +53,7 @@ router.route('/bears/:bear_id/:bear_on')
         res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
 
         if (req.params.bear_on == 0) {
-            led.unexport();
+            //led.unexport();
         }
     })
 
