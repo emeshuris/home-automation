@@ -7,6 +7,25 @@
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
+var schemata = require('schemata');
+
+var pinSchema = schemata({
+  name: {
+    type: String,
+    name: 'Thing name'
+  },
+  gpio: {
+    type: Number
+  },
+  active: {
+    type: Boolean,
+    defaultValue: false
+  }
+});
+
+// var LampPin     = require('./app/models/pin.js');
+
+var blank = pinSchema.makeBlank();
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
