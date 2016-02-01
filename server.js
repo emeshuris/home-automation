@@ -35,16 +35,24 @@ router.use(function (req, res, next) {
 // ----------------------------------------------------
 router.route('/bears')
 
+router.route('/bears/:bear_id')
+
+    .get(function (req, res) {
+        var led = new Gpio(req.params.bear_id, 'out');
+        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + led.readSync() });
+        led.unexport();
+    })
+
 router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
         var led = new Gpio(req.params.bear_id, 'out');
-        
+
         led.writeSync(req.params.bear_on);
 
         res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
-        
-        if (req.params.bear_on == 0){
+
+        if (req.params.bear_on == 0) {
             led.unexport();
         }
     })
