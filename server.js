@@ -38,7 +38,7 @@ router.route('/bears')
 router.route('/bears/:bear_id')
 
     .get(function (req, res) {
-        var led = new Gpio(req.params.bear_id, 'out');
+        var led = new Gpio(req.params.bear_id, 'in');
         res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + led.readSync() });
         led.unexport();
     })
