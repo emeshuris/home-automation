@@ -82,7 +82,7 @@ router.route('/bears/:bear_id')
         });
         */
         var led = new Gpio(req.params.bear_id, 'out');
-        led.writeSync(led.readSync() ^ 1);
+        led.writeSync(1);
         
         res.json({ message: req.params.bear_id + ': ' + led.readSync() });
         led.unexport();
