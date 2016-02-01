@@ -34,7 +34,7 @@ router.use(function (req, res, next) {
 // on routes that end in /bears
 // ----------------------------------------------------
 router.route('/bears')
-
+/*
 router.route('/bears/:bear_id')
 
     .get(function (req, res) {
@@ -42,7 +42,7 @@ router.route('/bears/:bear_id')
         res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + led.readSync() });
         led.unexport();
     })
-
+*/
 router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
