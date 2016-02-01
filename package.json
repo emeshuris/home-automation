@@ -16,10 +16,11 @@
     "url": "https://github.com/emeshuris/home-automation/issues"
   },
   "dependencies": {
-    "express": "~4.0.0",
     "body-parser": "~1.0.1",
     "connect": "^3.4.1",
+    "express": "~4.0.0",
     "onoff": "^1.0.4",
-    "schemata": "^3.0.0"
+    "mongoose": "^4.3.7",
+    "morgan": "1.6.1"
   }
 }

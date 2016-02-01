@@ -1,52 +1,123 @@
-// server.js
-
 // BASE SETUP
 // =============================================================================
 
 // call the packages we need
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
+var express = require('express');
 var bodyParser = require('body-parser');
-var schemata = require('schemata');
+var app = express();
+var morgan = require('morgan');
 
-var pinSchema = schemata({
-  name: {
-    type: String,
-    name: 'Thing name'
-  },
-  gpio: {
-    type: Number
-  },
-  active: {
-    type: Boolean,
-    defaultValue: false
-  }
-});
+// configure app
+app.use(morgan('dev')); // log requests to the console
 
-// var LampPin     = require('./app/models/pin.js');
-
-var blank = pinSchema.makeBlank();
-
-// configure app to use bodyParser()
-// this will let us get the data from a POST
+// configure body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;        // set our port
+var port = process.env.PORT || 8080; // set our port
+var Bear = require('./app/models/bear');
 
 // ROUTES FOR OUR API
 // =============================================================================
-var router = express.Router();              // get an instance of the express Router
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
+// create our router
+var router = express.Router();
+
+// middleware to use for all requests
+router.use(function (req, res, next) {
+    // do logging
+    console.log('Something is happening.');
+    next();
 });
 
-// more routes for our API will happen here
+// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+router.get('/', function (req, res) {
+    res.json({ message: 'hooray! welcome to our api!' });
+});
+
+// on routes that end in /bears
+// ----------------------------------------------------
+router.route('/bears')
+
+// create a bear (accessed at POST http://localhost:8080/bears)
+    .post(function (req, res) {
+
+        var bear = new Bear();		// create a new instance of the Bear model
+        bear.name = req.body.name;  // set the bears name (comes from the request)
+
+        bear.save(function (err) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Bear created!' });
+        });
+
+
+    })
+
+// get all the bears (accessed at GET http://localhost:8080/api/bears)
+    .get(function (req, res) {
+        /*
+        Bear.find(function (err, bears) {
+            if (err)
+                res.send(err);
+
+            res.json(bears);
+        });
+        */
+    });
+
+// on routes that end in /bears/:bear_id
+// ----------------------------------------------------
+router.route('/bears/:bear_id')
+
+// get the bear with that id
+    .get(function (req, res) {
+        /*
+        Bear.findById(req.params.bear_id, function (err, bear) {
+            if (err)
+                res.send(err);
+            res.json(bear);
+        });
+        */
+    })
+
+// update the bear with this id
+    .put(function (req, res) {
+        var Gpio = require('onoff').Gpio, // Constructor function for Gpio objects. 
+            led = new Gpio(14, 'out'),      // Export GPIO #14 as an output. 
+            iv;
+ 
+        // Toggle the state of the LED on GPIO #14 every 200ms. 
+        // Here synchronous methods are used. Asynchronous methods are also available. 
+        iv = setInterval(function () {
+            led.writeSync(led.readSync() ^ 1); // 1 = on, 0 = off :) 
+        }, 2000);
+ 
+        // Stop blinking the LED and turn it off after 5 seconds. 
+        setTimeout(function () {
+            clearInterval(iv); // Stop blinking 
+            led.writeSync(0);  // Turn LED off. 
+            led.unexport();    // Unexport GPIO and free resources 
+        }, 10000);
+		/*Bear.findById(req.params.bear_id, function(err, bear) {
+
+			if (err)
+				res.send(err);
+
+			bear.name = req.body.name;
+			bear.save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: 'Bear updated!' });
+			});
+
+		});*/
+    })
+
 
 // REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
 app.use('/api', router);
 
 // START THE SERVER
