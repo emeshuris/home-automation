@@ -31,11 +31,6 @@ router.use(function (req, res, next) {
     next();
 });
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function (req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });
-});
-
 // on routes that end in /bears
 // ----------------------------------------------------
 router.route('/bears')
@@ -44,9 +39,10 @@ router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
         var led = new Gpio(req.params.bear_id, 'out');
+        
         led.writeSync(req.params.bear_on);
 
-        res.json({ message: req.params.bear_id + ': ' + req.params.bear_on });
+        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
         
         if (req.params.bear_on == 0){
             led.unexport();
