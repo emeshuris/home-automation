@@ -19,6 +19,7 @@
     "express": "~4.0.0",
     "body-parser": "~1.0.1",
     "connect": "^3.4.1",
-    "onoff": "^1.0.4"
+    "onoff": "^1.0.4",
+    "schemata": "^3.0.0"
   }
 }
