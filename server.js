@@ -56,6 +56,7 @@ router.route('/bears/:bear_id/:bear_on')
             led.writeSync(1);
         }
 
+            led.writeSync(1);
         res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
 
     })
