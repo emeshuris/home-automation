@@ -83,7 +83,7 @@ router.route('/bears/:bear_id')
         var Gpio = require('onoff').Gpio,
             led = new Gpio(14, 'out');
         
-        res.json({ message: led.readSync() ^ 0 });
+        res.json({ message: req.params.bear_id + ': ' + led.readSync() });
     })
 
 // update the bear with this id
@@ -104,20 +104,6 @@ router.route('/bears/:bear_id')
             led.writeSync(0);  // Turn LED off. 
             led.unexport();    // Unexport GPIO and free resources 
         }, 10000);
-		/*Bear.findById(req.params.bear_id, function(err, bear) {
-
-			if (err)
-				res.send(err);
-
-			bear.name = req.body.name;
-			bear.save(function(err) {
-				if (err)
-					res.send(err);
-
-				res.json({ message: 'Bear updated!' });
-			});
-
-		});*/
     })
 
 
