@@ -47,17 +47,18 @@ router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
         var led = new Gpio(req.params.bear_id, 'out');
+        var turnedOn = req.params.bear_on ^ 1;
+        
+        console.log('Passed value: ' + req.params.bear_on);
+        console.log('Value to be written: ' + turnedOn);
+        
+        led.writeSync(turnedOn);
 
         if (req.params.bear_on == 0) {
-            led.writeSync(0);
             led.unexport();
         }
-        else {
-            led.writeSync(1);
-        }
 
-            led.writeSync(0);
-        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
+        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + turnedOn });
 
     })
 
