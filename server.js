@@ -44,29 +44,28 @@ router.route('/bears/:bear_id')
 router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
-        gpio.setup(req.params.bear_id, gpio.DIR_OUT, write);
+        var pinId = req.params.bear_id;
+        
+        gpio.setup(pinId, gpio.DIR_OUT, write);
 
-        var turnedOn = req.params.bear_on == 1;
+        var turnedOn = !(req.params.bear_on == 1);
 
         function write() {
-            gpio.write(req.params.bear_id, turnedOn, function (err) {
+            gpio.write(pinId, turnedOn, function (err) {
                 if (err) throw err;
                 console.log('Written to pin');
             });
         }
-        /*var led = new Gpio(req.params.bear_id, 'out');
-        var turnedOn = req.params.bear_on ^ 1;
 
-        console.log('Passed value: ' + req.params.bear_on);
-        console.log('Value to be written: ' + turnedOn);
+        gpio.setup(pinId, gpio.DIR_IN, readInput);
 
-        led.writeSync(turnedOn);
-
-        if (turnedOn == 1) {
-            led.unexport();
+        function readInput() {
+            gpio.read(pinId, function (err, value) {
+                console.log('The value is ' + value);
+            });
         }
-*/
-        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
+
+        res.json({ message: 'Pin: ' + pinId + ' State: ' + req.params.bear_on });
 
     })
 
