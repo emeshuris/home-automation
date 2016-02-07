@@ -96,6 +96,7 @@ function getPin(name) {
     for (var key in pins) {
         if (pins[key] == name) {
             console.log('name:' + name);
+            console.log('name:' + pins[key]);
             return pins[key];
         }
     }
