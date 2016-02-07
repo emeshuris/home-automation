@@ -20,7 +20,7 @@ var pinsNotExposed = [1, 2, 4, 6, 9, 14, 17, 20, 25, 30, 34, 39];
 var pins = [];
 
 for (var i = 1; i <= 26; i++) {
-    pins.push(false);
+    pins.push('off');
 }
 
 pinsNotExposed.forEach(function (pinId) {
@@ -64,7 +64,7 @@ router.route('/bears/:bear_id/:bear_on')
             function write() {
                 gpio.write(pinId, !pinOn, function (err) {
                     if (err) throw err;
-                    pins[pinId] = pinOn;
+                    pins[pinId] = req.params.bear_on;
                     console.log('Written to pin. Value: ' + pins[pinId]);
                 });
             }
