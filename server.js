@@ -51,13 +51,13 @@ router.route('/bears')
 
 router.route('/bears/:bear_id')
     .get(function (req, res) {
-        var pinId = req.params.bear_id;
+        var pinId = req.params.bear_id.toString();
         res.json({ message: JSON.stringify(pins[pinId]) });
     })
 
 router.route('/bears/:bear_id/:bear_on')
     .put(function (req, res) {
-        var pinId = req.params.bear_id;
+        var pinId = req.params.bear_id.toString();
         var pinOn = (req.params.bear_on == 'on') ? true : false;
 
         if (pins[pinId] != "na") {
@@ -69,7 +69,7 @@ router.route('/bears/:bear_id/:bear_on')
                         throw err;
                     }
 
-                    pins[pinId.toString()] = req.params.bear_on;
+                    pins[pinId] = req.params.bear_on;
                     console.log('Written to pin. Value: ' + pins[pinId]);
                 });
             }
