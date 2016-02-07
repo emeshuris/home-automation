@@ -47,7 +47,7 @@ router.route('/bears/:bear_id')
 
         res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + 1 });
     })
-/*
+
 router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
@@ -66,7 +66,7 @@ router.route('/bears/:bear_id/:bear_on')
 
         res.json({ message: 'Pin: ' + pinId + ' State: ' + req.params.bear_on });
 
-    })*/
+    })
 
 app.use('/api', router);
 app.listen(port);
