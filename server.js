@@ -63,6 +63,9 @@ router.route('/bears/:bear_id/:bear_on')
 
         if (currentPinValue == passedValue) {
             console.log('Current state same as requested');
+        } else {
+            console.log('Current state NOT same as requested');
+            
         }
         
         if (pins[passedId] != "na" && currentPinValue != passedValue) {
