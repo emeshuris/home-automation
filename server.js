@@ -23,7 +23,7 @@ for (var i = 1; i <= 26; i++) {
     pins.push(false);
 }
 
-pinsNotExposed.forEach(function(pinId){
+pinsNotExposed.forEach(function (pinId) {
     pins[pinId] = 'na';
 });
 
@@ -43,6 +43,9 @@ router.use(function (req, res, next) {
 // on routes that end in /bears
 // ----------------------------------------------------
 router.route('/bears')
+    .get(function (req, res) {
+        res.json({ message: JSON.stringify(pins) });
+    })
 
 router.route('/bears/:bear_id')
     .get(function (req, res) {
@@ -55,7 +58,7 @@ router.route('/bears/:bear_id/:bear_on')
         var pinId = req.params.bear_id;
         var pinOn = (req.params.bear_on == 'on') ? true : false;
 
-        if (typeof (pins[pinId]) === "boolean") {
+        if (typeof (pins[pinId]) !== "boolean") {
             gpio.setup(pinId, gpio.DIR_OUT, write);
 
             function write() {
@@ -66,7 +69,7 @@ router.route('/bears/:bear_id/:bear_on')
                 });
             }
         }
-        
+
         res.json({ message: 'Pin: ' + pinId + ' State: ' + pins[pinId] });
 
     })
