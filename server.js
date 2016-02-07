@@ -53,7 +53,7 @@ router.route('/bears/:bear_id/:bear_on')
             led.setDirection('out')
             led.writeSync(turnedOn);
 
-            if (turnedOn == 0) {
+            if (turnedOn == 1) {
                 led.unexport();
             }
             
