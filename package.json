@@ -19,8 +19,9 @@
     "body-parser": "~1.0.1",
     "connect": "^3.4.1",
     "express": "~4.0.0",
-    "onoff": "^1.0.4",
     "mongoose": "^4.3.7",
-    "morgan": "1.6.1"
+    "morgan": "1.6.1",
+    "onoff": "^1.0.4",
+    "pi-gpio": "0.0.8"
   }
 }
