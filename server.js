@@ -56,6 +56,7 @@ router.route('/bears/:bear_id/:bear_on')
         var currentPin = getPin(passedId);
 
         console.log('currentPin:' + currentPin);
+        console.log('passedValue:' + passedValue);
 
         if (pins[pinId] != "na" && currentPin != passedValue) {
             gpio.setup(pinId, gpio.DIR_OUT, write);
@@ -92,10 +93,7 @@ function pushToAry(name, val) {
 }
 
 function getPin(name) {
-    
     for (var key in pins) {
-            console.log('name:' + name);
-            console.log('name:' + key);
         if (key == name) {
             return pins[key];
         }
