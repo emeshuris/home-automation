@@ -52,11 +52,11 @@ router.route('/bears/:bear_id/:bear_on')
 
             led.setDirection('out')
             led.writeSync(turnedOn);
-/*
-            if (turnedOn == 1) {
+
+            if (turnedOn == 0) {
                 led.unexport();
             }
-        */
+            
             led.setDirection('in')
             var ledState = led.readSync();
         
