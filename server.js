@@ -44,12 +44,13 @@ router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
         try {
-            var led = new Gpio(req.params.bear_id, 'out');
-            var turnedOn = req.params.bear_on;
-
-            console.log('Value to be written: ' + turnedOn);
+            var led = new Gpio(req.params.bear_id, 'in');
             console.log('Current value: ' + led.readSync());
+            
+            var turnedOn = req.params.bear_on;
+            console.log('Value to be written: ' + turnedOn);
 
+            led.setDirection('in')
             led.writeSync(turnedOn);
 /*
             if (turnedOn == 1) {
