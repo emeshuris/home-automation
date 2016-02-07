@@ -17,10 +17,10 @@ var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
 
 var pinsNotExposed = [1, 2, 4, 6, 9, 14, 17, 20, 25, 30, 34, 39];
-var pins = [];
+var pins = new Array();
 
 for (var i = 1; i <= 26; i++) {
-    pins.push('off');
+    pins[i] = 'off';
 }
 
 pinsNotExposed.forEach(function (pinId) {
@@ -50,7 +50,7 @@ router.route('/bears')
 router.route('/bears/:bear_id')
     .get(function (req, res) {
         var pinId = req.params.bear_id;
-        res.json({ message: 'Pin: ' + pinId + ' State: ' + pins[pinId] });
+        res.json({ message: JSON.stringify(pins[pinId]) });
     })
 
 router.route('/bears/:bear_id/:bear_on')
@@ -73,7 +73,7 @@ router.route('/bears/:bear_id/:bear_on')
             }
         }
 
-        res.json({ message: 'Pin: ' + pinId + ' updated' });
+        res.json({ message: '' });
     })
 
 app.use('/api', router);
