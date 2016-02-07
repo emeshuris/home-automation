@@ -51,15 +51,15 @@ router.route('/bears/:bear_id/:bear_on')
             console.log('Current value: ' + led.readSync());
 
             led.writeSync(turnedOn);
-
+/*
             if (turnedOn == 1) {
                 led.unexport();
             }
+        */
+            //led.setDirection('in')
+            //var ledState = led.readSync();
         
-            led.setDirection('in')
-            var ledState = led.readSync();
-        
-            console.log('New value: ' + ledState);
+            //console.log('New value: ' + ledState);
             
             res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
         }
