@@ -65,10 +65,12 @@ router.route('/bears/:bear_id/:bear_on')
                         throw err;
                     }
 
-                    console.log('currentPin:' + currentPin);
-                    console.log('passedValue:' + passedValue);
 
                     pushToAry(passedId, passedValue);
+                    
+                    console.log('currentPin:' + currentPin);
+                    console.log('passedValue:' + passedValue);
+                    
                     console.log('Written to pin. Value: ' + pins[passedId]);
                 });
             }
@@ -90,6 +92,7 @@ function getPinId(val) {
 
 function pushToAry(name, val) {
     var friendlyName = PIN + name.toString();
+    console.log(friendlyName + ' ' + val);
     pins[friendlyName] = val;
 }
 
