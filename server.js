@@ -43,14 +43,15 @@ router.route('/bears')
 
 router.route('/bears/:bear_id')
     .get(function (req, res) {
-        var passedValue = req.params.bear_id;
-        res.json({ message: JSON.stringify(pins[passedValue]) });
+        var passedId = req.params.bear_id;
+        res.json({ message: JSON.stringify(pins[passedId]) });
     })
 
 router.route('/bears/:bear_id/:bear_on')
     .put(function (req, res) {
-        var passedValue = req.params.bear_id;
-        var pinId = getPinId(passedValue);
+        var passedId = req.params.bear_id;
+        var passedValue = req.params.bear_on;
+        var pinId = getPinId(passedId);
         var pinOn = (req.params.bear_on == ON) ? true : false;
 
         if (pins[pinId] != "na") {
@@ -62,8 +63,9 @@ router.route('/bears/:bear_id/:bear_on')
                         throw err;
                     }
 
-                    pins[passedValue] = req.params.bear_on;
-                    console.log('Written to pin. Value: ' + pins[passedValue]);
+                    pins[passedId] = req.params.bear_on;
+                    pushToAry(passedId, passedValue);
+                    console.log('Written to pin. Value: ' + pins[passedId]);
                 });
             }
         }
@@ -87,8 +89,6 @@ function pushToAry(name, val) {
     pins[friendlyName] = val;
 }
 
-pushToAry(1, NA);
-pushToAry(1, NA);
 pushToAry(1, NA);
 pushToAry(2, NA);
 pushToAry(3, OFF);
