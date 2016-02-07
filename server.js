@@ -48,7 +48,7 @@ router.route('/bears/:bear_id')
 router.route('/bears/:bear_id/:bear_on')
     .put(function (req, res) {
         var pinId = req.params.bear_id;
-        var pinOn = req.params.bear_on;
+        var pinOn = !(req.params.bear_on);
 
         gpio.setup(pinId, gpio.DIR_OUT, write);
 
