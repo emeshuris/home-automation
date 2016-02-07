@@ -49,18 +49,13 @@ router.route('/bears/:bear_id')
 
 router.route('/bears/:bear_id/:bear_on')
     .put(function (req, res) {
-        var passedId = req.params.bear_id;
         var passedValue = req.params.bear_on;
+        var passedId = req.params.bear_id;
+        var currentPinValue = getPin(passedId);
         var pinId = getPinId(passedId);
         var pinOn = (passedValue == ON) ? true : false;
-        
 
-                console.log('currentPin:' + passedId);
-                
-        var currentPin = getPin(passedId);
-
-
-        if (pins[passedId] != "na" && currentPin != passedValue) {
+        if (pins[passedId] != "na" && currentPinValue != passedValue) {
             gpio.setup(pinId, gpio.DIR_OUT);
 
             gpio.write(pinId, !pinOn, function (err) {
