@@ -71,7 +71,7 @@ router.route('/bears/:bear_id/:bear_on')
                 gpio.write(pinId, true, function (err) {
                     if (err) throw err;                
 
-                    pushToAry(passedId, passedValue);
+                    pushToAry(pinId, passedValue);
                     console.log('Written to pin. Value: ' + pins[passedId]);
                 });
             }
