@@ -1,14 +1,6 @@
-const EventEmitter = require('events');
-const util = require('util');
-
-function MyEmitter() {
-    EventEmitter.call(this);
-}
-util.inherits(MyEmitter, EventEmitter);
-
-const myEmitter = new MyEmitter();
-myEmitter.on('event', function () {
-    console.log('an event occurred!');
+var gpio = require('rpi-gpio');
+ 
+gpio.on('change', function(channel, value) {
+	console.log('Channel ' + channel + ' value is now ' + value);
 });
-
-myEmitter.emit('event');
+gpio.setup(8, gpio.DIR_IN, gpio.EDGE_BOTH);
