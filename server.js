@@ -48,10 +48,10 @@ router.route('/bears/:bear_id/:bear_on')
 
         gpio.setup(pinId, gpio.DIR_OUT, write);
 
-        var turnedOn = req.params.bear_on == 0;
+        var pinLow = req.params.bear_on == 0;
 
         function write() {
-            gpio.write(pinId, turnedOn, function (err) {
+            gpio.write(pinId, pinLow, function (err) {
                 if (err) throw err;
                 console.log('Written to pin');
             });
