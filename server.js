@@ -51,8 +51,8 @@ router.route('/bears/:bear_id/:bear_on')
 
         gpio.setup(pinId, gpio.DIR_OUT, write);
 
-        var pinLow = req.params.bear_on == 0;
-
+        var pinLow = (req.params.bear_on == 0);
+console.log('passed alue: ' + pinLow);
         function write() {
             gpio.write(pinId, pinLow, function (err) {
                 if (err) throw err;
