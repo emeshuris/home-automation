@@ -38,7 +38,7 @@ router.route('/bears')
 router.route('/bears/:bear_id')
     .get(function (req, res) {
         var pinId = req.params.bear_id;
-        res.json({ message: 'Pin: ' + pinId + ' State: ' + pin8 });
+        res.json({ message: 'Pin: ' + pinId + ' State: ' + pin8Low });
     })
 
 router.route('/bears/:bear_id/:bear_on')
