@@ -21,7 +21,7 @@ var pins = new Array();
 
 for (var i = 1; i <= 26; i++) {
     var obj = {};
-    obj[i] = (!valueInArray(i)) ? 'off' : 'na';
+    obj[i] = (!valueInArray(i) == true) ? 'off' : 'na';
     pins.push(obj);
 }
 
