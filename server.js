@@ -4,7 +4,8 @@ var bodyParser = require('body-parser');
 var app = express();
 var morgan = require('morgan');
 //var Gpio = require('onoff').Gpio;
-var gpio = require("pi-gpio");
+
+var gpio = require('rpi-gpio');
 // configure app
 app.use(morgan('dev')); // log requests to the console
 
@@ -43,13 +44,16 @@ router.route('/bears/:bear_id')
 router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
+        gpio.setup(req.params.bear_id, gpio.DIR_OUT, write);
 
-        gpio.open(req.params.bear_id, "output", function (err) {		// Open pin 16 for output 
-            gpio.write(req.params.bear_id, req.params.bear_on, function () {			// Set pin 16 high (1) 
-                gpio.close(req.params.bear_id);						// Close pin 16 
+        var turnedOn = req.params.bear_on == 1;
+
+        function write() {
+            gpio.write(req.params.bear_id, turnedOn, function (err) {
+                if (err) throw err;
+                console.log('Written to pin');
             });
-        });
-
+        }
         /*var led = new Gpio(req.params.bear_id, 'out');
         var turnedOn = req.params.bear_on ^ 1;
 
