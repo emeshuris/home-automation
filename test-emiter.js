@@ -1,5 +1,5 @@
 var gpio = require('rpi-gpio');
-gpio.detroy();
+gpio.destroy();
  
 gpio.setup(10, gpio.DIR_OUT, write);
  
