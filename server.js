@@ -73,7 +73,7 @@ router.route('/bears/:bear_id/:bear_on')
                     throw err;
                 }
 
-                pushToAry(pinId, passedValue);
+                pushToAry(passedId, passedValue);
 
                 //console.log('Written to pin. Value: ' + pins[passedId]);
             });
