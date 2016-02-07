@@ -45,16 +45,18 @@ router.route('/bears/:bear_id/:bear_on')
     .put(function (req, res) {
         var led = new Gpio(req.params.bear_id, 'out');
         var turnedOn = req.params.bear_on ^ 1;
-        
+
         console.log('Passed value: ' + req.params.bear_on);
         console.log('Value to be written: ' + turnedOn);
-        
+
         led.writeSync(turnedOn);
 
         if (turnedOn == 1) {
             led.unexport();
         }
 
+        led = new Gpio(req.params.bear_id, 'in');
+        console.log('New value: ' + led.readSync());
         res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
 
     })
