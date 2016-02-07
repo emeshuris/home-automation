@@ -20,7 +20,9 @@ var pinsNotExposed = [1, 2, 4, 6, 9, 14, 17, 20, 25, 30, 34, 39];
 var pins = new Array();
 
 for (var i = 1; i <= 26; i++) {
-    pins[i] = 'off';
+    var obj = {};
+    obj[i.toString()] = 'off';
+    pins.push(obj);
 }
 
 pinsNotExposed.forEach(function (pinId) {
