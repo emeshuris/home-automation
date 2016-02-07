@@ -13,30 +13,12 @@ app.use(morgan('dev')); // log requests to the console
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+var OFF = 'off';
+var ON = 'on';
+var NA = 'na';
+
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
-
-var pinsNotExposed = [1, 2, 4, 6, 9, 14, 17, 20, 25, 30, 34, 39];
-var pins = new Array();
-
-for (var i = 1; i <= 26; i++) {
-    var obj = {};
-    var nonExposedPin = valueInArray(i);
-    
-    console.log(i + ' -na ' + nonExposedPin);
-
-    obj[i] = (!valueInArray(i) == true) ? 'off' : 'na';
-    pins.push(obj);
-}
-
-function valueInArray(pinId) {
-    pinsNotExposed.forEach(function (naPinId) {
-        if (naPinId == pinId) {
-            return true;
-        }
-    });
-    return false;
-}
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -67,7 +49,7 @@ router.route('/bears/:bear_id')
 router.route('/bears/:bear_id/:bear_on')
     .put(function (req, res) {
         var pinId = req.params.bear_id;
-        var pinOn = (req.params.bear_on == 'on') ? true : false;
+        var pinOn = (req.params.bear_on == ON) ? true : false;
 
         if (pins[pinId] != "na") {
             gpio.setup(pinId, gpio.DIR_OUT, write);
@@ -90,3 +72,60 @@ router.route('/bears/:bear_id/:bear_on')
 app.use('/api', router);
 app.listen(port);
 console.log('Magic happens on port ' + port);
+
+var pinsNotExposed = [1, 2, 4, 6, 9, 14, 17, 20, 25, 30, 34, 39];
+var pins = new Array();
+
+function pushToAry(name, val) {
+   var obj = {};
+   obj[name] = val;
+   pins.push(obj);
+}
+
+pushToAry(1, NA);
+pushToAry(2, NA);
+pushToAry(3, OFF);
+pushToAry(4, NA);
+pushToAry(5, OFF);
+
+pushToAry(6, NA);
+pushToAry(7, OFF);
+pushToAry(8, OFF);
+pushToAry(9, NA);
+pushToAry(10, OFF);
+
+pushToAry(11, OFF);
+pushToAry(12, OFF);
+pushToAry(13, OFF);
+pushToAry(14, NA);
+pushToAry(15, OFF);
+
+pushToAry(16, OFF);
+pushToAry(17, NA);
+pushToAry(18, OFF);
+pushToAry(19, OFF);
+pushToAry(20, NA);
+
+pushToAry(21, OFF);
+pushToAry(22, OFF);
+pushToAry(23, OFF);
+pushToAry(24, OFF);
+pushToAry(25, NA);
+
+pushToAry(26, OFF);
+pushToAry(27, OFF);
+pushToAry(28, OFF);
+pushToAry(29, OFF);
+pushToAry(30, NA);
+
+pushToAry(31, OFF);
+pushToAry(32, OFF);
+pushToAry(33, OFF);
+pushToAry(34, NA);
+pushToAry(35, OFF);
+
+pushToAry(36, OFF);
+pushToAry(37, OFF);
+pushToAry(38, OFF);
+pushToAry(39, NA);
+pushToAry(40, OFF);
