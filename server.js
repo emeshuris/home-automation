@@ -55,8 +55,7 @@ router.route('/bears/:bear_id/:bear_on')
         var pinOn = (passedValue == ON) ? true : false;
         
 
-                console.log('currentPin:' + currentPin);
-                console.log('passedValue:' + passedValue);
+                console.log('currentPin:' + passedId);
                 
         var currentPin = getPin(passedId);
 
