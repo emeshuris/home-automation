@@ -44,7 +44,7 @@ router.route('/bears')
 router.route('/bears/:bear_id')
     .get(function (req, res) {
         var passedId = req.params.bear_id;
-        res.json({ message: JSON.stringify(pins[passedId]) });
+        res.json({ message: pins[passedId] });
     })
 
 router.route('/bears/:bear_id/:bear_on')
@@ -67,6 +67,7 @@ router.route('/bears/:bear_id/:bear_on')
 
         if (pins[passedId] != "na" && currentPinValue != passedValue) {
             gpio.setup(pinId, gpio.DIR_OUT, write);
+            
             function write() {
                 gpio.write(pinId, true, function (err) {
                     if (err) throw err;                
