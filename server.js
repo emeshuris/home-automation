@@ -43,30 +43,20 @@ router.route('/bears/:bear_id')
 router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
-        try {
-            var led = new Gpio(req.params.bear_id, 'in');
-            console.log('Current value: ' + led.readSync());
-            
-            var turnedOn = req.params.bear_on;
-            console.log('Value to be written: ' + turnedOn);
-
-            led.setDirection('out')
-            led.writeSync(turnedOn);
-
-            if (turnedOn == 1) {
-                led.unexport();
-            }
-            
-            led.setDirection('in')
-            var ledState = led.readSync();
+        var led = new Gpio(req.params.bear_id, 'out');
+        var turnedOn = req.params.bear_on ^ 1;
         
-            console.log('New value: ' + ledState);
-            
-            res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
+        console.log('Passed value: ' + req.params.bear_on);
+        console.log('Value to be written: ' + turnedOn);
+        
+        led.writeSync(turnedOn);
+
+        if (turnedOn == 1) {
+            led.unexport();
         }
-        catch (ex) {
-            console.log(ex);
-        }
+
+        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
+
     })
 
 app.use('/api', router);
