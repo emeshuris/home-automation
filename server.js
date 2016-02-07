@@ -79,7 +79,7 @@ function pushToAry(name, val) {
    /*var obj = {};
    obj[name] = val.toString();
    pins.push(obj);*/
-   pins['pin' + val.toString()] = val;
+   pins['pin' + name.toString()] = val;
 }
 
 pushToAry(1, NA);
