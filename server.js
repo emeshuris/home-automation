@@ -21,6 +21,16 @@ var PIN = 'pin';
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
 
+gpio.setup(10, gpio.DIR_OUT, write);
+ 
+function write() {
+    gpio.write(10, true, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
+}
+
+
 // ROUTES FOR OUR API
 // =============================================================================
 
