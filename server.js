@@ -63,13 +63,10 @@ router.route('/bears/:bear_id/:bear_on')
 
         if (currentPinValue == passedValue) {
             console.log('Current state same as requested');
-        } else {
-            console.log('Current state NOT same as requested');
-            
         }
         
         if (pins[passedId] != "na" && currentPinValue != passedValue) {
-            gpio.setup(pinId, gpio.DIR_OUT);
+            /*gpio.setup(pinId, gpio.DIR_OUT);
 
             gpio.write(pinId, !pinOn, function (err) {
                 if (err) {
@@ -78,8 +75,8 @@ router.route('/bears/:bear_id/:bear_on')
 
                 pushToAry(passedId, passedValue);
 
-                //console.log('Written to pin. Value: ' + pins[passedId]);
-            });
+                console.log('Written to pin. Value: ' + pins[passedId]);
+            });*/
         }
 
         res.json({ message: '' });
