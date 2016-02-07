@@ -55,6 +55,12 @@ router.route('/bears/:bear_id/:bear_on')
         var pinId = getPinId(passedId);
         var pinOn = (passedValue == ON) ? true : false;
 
+console.log('passedValue: ' + passedValue);
+console.log('passedId: ' + passedId);
+console.log('currentPinValue: ' + currentPinValue);
+console.log('pinId: ' + pinId);
+console.log('pinOn: ' + pinOn);
+
         if (pins[passedId] != "na" && currentPinValue != passedValue) {
             gpio.setup(pinId, gpio.DIR_OUT);
 
@@ -63,9 +69,9 @@ router.route('/bears/:bear_id/:bear_on')
                     throw err;
                 }
 
-                //pushToAry(passedId, passedValue);
+                pushToAry(pinId, passedValue);
 
-                //console.log('Written to pin. Value: ' + pins[passedId]);
+                console.log('Written to pin. Value: ' + pins[passedId]);
             });
         }
 
