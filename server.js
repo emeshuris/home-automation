@@ -53,7 +53,7 @@ router.route('/bears/:bear_id/:bear_on')
         gpio.setup(pinId, gpio.DIR_OUT, write);
 
         function write() {
-            gpio.write(pinId, pinOn, function (err) {
+            gpio.write(pinId, !pinOn, function (err) {
                 if (err) throw err;
                 pins[pinId] = pinOn;
                 console.log('Written to pin. Value: ' + pins[pinId]);
