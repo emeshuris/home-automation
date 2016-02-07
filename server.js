@@ -55,8 +55,8 @@ router.route('/bears/:bear_id/:bear_on')
             led.unexport();
         }
 
-        led = new Gpio(req.params.bear_id, 'in');
-        console.log('New value: ' + led.readSync());
+        /*led = new Gpio(req.params.bear_id, 'in');
+        console.log('New value: ' + led.readSync());*/
         res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + req.params.bear_on });
 
     })
