@@ -60,7 +60,7 @@ router.route('/bears/:bear_id/:bear_on')
         var pinId = req.params.bear_id;
         var pinOn = (req.params.bear_on == 'on') ? true : false;
 
-        if (typeof (pins[pinId]) !== "boolean") {
+        if (pins[pinId] != "na") {
             gpio.setup(pinId, gpio.DIR_OUT, write);
 
             function write() {
