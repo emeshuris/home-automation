@@ -21,15 +21,18 @@ var pins = new Array();
 
 for (var i = 1; i <= 26; i++) {
     var obj = {};
-    obj[i.toString()] = 'off';
+    obj[i] = (!valueInArray(i)) ? 'off' : 'na';
     pins.push(obj);
 }
 
-pinsNotExposed.forEach(function (pinId) {
-    var obj = {};
-    obj[i.toString()] = 'na';
-    pins.push(obj);
-});
+function valueInArray(pinId) {
+    pinsNotExposed.forEach(function (naPinId) {
+        if (naPinId == pinId) {
+            return true;
+        }
+    });
+    return false;
+}
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -53,13 +56,13 @@ router.route('/bears')
 
 router.route('/bears/:bear_id')
     .get(function (req, res) {
-        var pinId = req.params.bear_id.toString();
+        var pinId = req.params.bear_id;
         res.json({ message: JSON.stringify(pins[pinId]) });
     })
 
 router.route('/bears/:bear_id/:bear_on')
     .put(function (req, res) {
-        var pinId = req.params.bear_id.toString();
+        var pinId = req.params.bear_id;
         var pinOn = (req.params.bear_on == 'on') ? true : false;
 
         if (pins[pinId] != "na") {
