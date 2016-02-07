@@ -61,13 +61,15 @@ router.route('/bears/:bear_id/:bear_on')
 
 
         if (pins[pinId] != "na" && currentPin != passedValue) {
+            
+            console.log('im here: ');
+            
             gpio.setup(pinId, gpio.DIR_OUT);
 
             gpio.write(pinId, !pinOn, function (err) {
                 if (err) {
                     throw err;
                 }
-            console.log('im here: ');
 
                 pushToAry(passedId, passedValue);
 
