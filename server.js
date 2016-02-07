@@ -20,12 +20,12 @@ var pinsNotExposed = [1, 2, 4, 6, 9, 14, 17, 20, 25, 30, 34, 39];
 var pins = [];
 
 for (var i = 1; i <= 26; i++) {
-    if (pinsNotExposed.has(i)) {
-        pins.push('na');
-        continue;
-    }
     pins.push(false);
 }
+
+pinsNotExposed.forEach(function(pinId){
+    pins[pinId] = 'na';
+});
 
 // ROUTES FOR OUR API
 // =============================================================================
