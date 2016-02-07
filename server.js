@@ -53,6 +53,11 @@ router.route('/bears/:bear_id/:bear_on')
         var passedValue = req.params.bear_on;
         var pinId = getPinId(passedId);
         var pinOn = (passedValue == ON) ? true : false;
+        
+
+                console.log('currentPin:' + currentPin);
+                console.log('passedValue:' + passedValue);
+                
         var currentPin = getPin(passedId);
 
 
@@ -65,9 +70,6 @@ router.route('/bears/:bear_id/:bear_on')
                 }
 
                 pushToAry(passedId, passedValue);
-
-                console.log('currentPin:' + currentPin);
-                console.log('passedValue:' + passedValue);
 
                 console.log('Written to pin. Value: ' + pins[passedId]);
             });
