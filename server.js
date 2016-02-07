@@ -80,6 +80,7 @@ var pins = {};
 
 function getPinId(val) {
     val = parseInt(val.replace(PIN, ''));
+    console.log(val);
     return val;
 }
 
