@@ -67,6 +67,7 @@ router.route('/bears/:bear_id/:bear_on')
                 if (err) {
                     throw err;
                 }
+            console.log('im here: ');
 
                 pushToAry(passedId, passedValue);
 
@@ -97,7 +98,6 @@ function pushToAry(name, val) {
 function getPin(name) {
     for (var key in pins) {
         if (key == name) {
-            console.log('im here: ' + pins[key]);
             return pins[key];
         }
     }
