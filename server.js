@@ -85,9 +85,10 @@ function getPinId(val) {
 function pushToAry(name, val) {
     var friendlyName = PIN + name.toString();
     pins[friendlyName] = val;
-    console.log(getPinId(friendlyName));
 }
 
+pushToAry(1, NA);
+pushToAry(1, NA);
 pushToAry(1, NA);
 pushToAry(2, NA);
 pushToAry(3, OFF);
