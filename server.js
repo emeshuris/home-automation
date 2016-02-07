@@ -46,7 +46,7 @@ router.use(function (req, res, next) {
 // ----------------------------------------------------
 router.route('/bears')
     .get(function (req, res) {
-        res.json({ JSON.stringify(pins) });
+        res.json({ message: JSON.stringify(pins) });
     })
 
 router.route('/bears/:bear_id')
