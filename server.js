@@ -97,7 +97,7 @@ function pushToAry(name, val) {
 function getPin(name) {
     for (var key in pins) {
         if (key == name) {
-            console.log('im here: ' + key);
+            console.log('im here: ' + pins);
             return pins[key];
         }
     }
