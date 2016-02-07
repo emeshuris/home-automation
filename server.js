@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 var OFF = 'off';
 var ON = 'on';
 var NA = 'na';
+var PIN = 'pin';
 
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
@@ -42,13 +43,15 @@ router.route('/bears')
 
 router.route('/bears/:bear_id')
     .get(function (req, res) {
-        var pinId = req.params.bear_id;
+        var passedValue = req.params.bear_id;
+        var pinId = getPinId(passedValue);;
         res.json({ message: JSON.stringify(pins[pinId]) });
     })
 
 router.route('/bears/:bear_id/:bear_on')
     .put(function (req, res) {
-        var pinId = req.params.bear_id;
+        var passedValue = req.params.bear_id;
+        var pinId = getPinId(passedValue);
         var pinOn = (req.params.bear_on == ON) ? true : false;
 
         if (pins[pinId] != "na") {
@@ -75,11 +78,15 @@ console.log('Magic happens on port ' + port);
 
 var pins = {};
 
+function getPinId(val) {
+    val = parseInt(val.replace(PIN, ''));
+    return val;
+}
+
 function pushToAry(name, val) {
-   /*var obj = {};
-   obj[name] = val.toString();
-   pins.push(obj);*/
-   pins['pin' + name.toString()] = val;
+    var friendlyName = PIN + name.toString();
+    pins[friendlyName] = val;
+    console.log(friendlyName);
 }
 
 pushToAry(1, NA);
