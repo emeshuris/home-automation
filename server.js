@@ -15,12 +15,6 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
- 
-gpio.on('change', function(channel, value) {
-	console.log('Channel ' + channel + ' value is now ' + value);
-});
-
-gpio.setup(8, gpio.DIR_IN, gpio.EDGE_BOTH);
 
 // ROUTES FOR OUR API
 // =============================================================================
