@@ -67,7 +67,7 @@ router.route('/bears/:bear_id/:bear_on')
             }
         }
         
-        res.json({ message: 'Pin: ' + pinId + ' State: ' + req.params.bear_on });
+        res.json({ message: 'Pin: ' + pinId + ' State: ' + pins[pinId] });
 
     })
 
