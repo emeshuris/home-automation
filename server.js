@@ -27,13 +27,12 @@ for (var i = 1; i <= 26; i++) {
 
 function valueInArray(pinId) {
     pinsNotExposed.forEach(function (naPinId) {
-        console.log (pinId);
-        console.log (naPinId);
-        
         if (naPinId == pinId) {
+            console.log(pinId + ' -eq ' + naPinId);
             return true;
         }
     });
+    console.log(pinId + ' -neq ');
     return false;
 }
 
