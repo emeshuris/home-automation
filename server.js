@@ -69,7 +69,7 @@ router.route('/bears/:bear_id/:bear_on')
                         throw err;
                     }
 
-                    pins[pinId] = req.params.bear_on;
+                    pins[pinId.toString()] = req.params.bear_on;
                     console.log('Written to pin. Value: ' + pins[pinId]);
                 });
             }
