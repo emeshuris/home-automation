@@ -73,13 +73,13 @@ app.use('/api', router);
 app.listen(port);
 console.log('Magic happens on port ' + port);
 
-var pinsNotExposed = [1, 2, 4, 6, 9, 14, 17, 20, 25, 30, 34, 39];
-var pins = new Array();
+var pins = {};
 
 function pushToAry(name, val) {
-   var obj = {};
-   obj[name] = val;
-   pins.push(obj);
+   /*var obj = {};
+   obj[name] = val.toString();
+   pins.push(obj);*/
+   pins['pin' + val.toString()] = val;
 }
 
 pushToAry(1, NA);
