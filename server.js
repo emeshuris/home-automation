@@ -63,15 +63,17 @@ router.route('/bears/:bear_id/:bear_on')
 
             function write() {
                 gpio.write(pinId, !pinOn, function (err) {
-                    if (err) throw err;
+                    if (err) {
+                        throw err;
+                    }
+
                     pins[pinId] = req.params.bear_on;
                     console.log('Written to pin. Value: ' + pins[pinId]);
                 });
             }
         }
 
-        res.json({ message: 'Pin: ' + pinId + ' State: ' + pins[pinId] });
-
+        res.json({ message: 'Pin: ' + pinId + ' updated' });
     })
 
 app.use('/api', router);
