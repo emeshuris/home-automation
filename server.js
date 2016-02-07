@@ -55,12 +55,16 @@ router.route('/bears/:bear_id/:bear_on')
         var pinId = getPinId(passedId);
         var pinOn = (passedValue == ON) ? true : false;
 
-console.log('passedValue: ' + passedValue);
-console.log('passedId: ' + passedId);
-console.log('currentPinValue: ' + currentPinValue);
-console.log('pinId: ' + pinId);
-console.log('pinOn: ' + pinOn);
+        console.log('passedValue: ' + passedValue);
+        console.log('passedId: ' + passedId);
+        console.log('currentPinValue: ' + currentPinValue);
+        console.log('pinId: ' + pinId);
+        console.log('pinOn: ' + pinOn);
 
+        if (currentPinValue == passedValue) {
+            console.log('Current state same as requested');
+        }
+        
         if (pins[passedId] != "na" && currentPinValue != passedValue) {
             gpio.setup(pinId, gpio.DIR_OUT);
 
