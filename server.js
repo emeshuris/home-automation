@@ -44,8 +44,7 @@ router.route('/bears')
 router.route('/bears/:bear_id')
     .get(function (req, res) {
         var passedValue = req.params.bear_id;
-        var pinId = getPinId(passedValue);;
-        res.json({ message: JSON.stringify(pins[pinId]) });
+        res.json({ message: JSON.stringify(pins[passedValue]) });
     })
 
 router.route('/bears/:bear_id/:bear_on')
@@ -63,8 +62,8 @@ router.route('/bears/:bear_id/:bear_on')
                         throw err;
                     }
 
-                    pins[pinId] = req.params.bear_on;
-                    console.log('Written to pin. Value: ' + pins[pinId]);
+                    pins[passedValue] = req.params.bear_on;
+                    console.log('Written to pin. Value: ' + pins[passedValue]);
                 });
             }
         }
