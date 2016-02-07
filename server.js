@@ -80,14 +80,13 @@ var pins = {};
 
 function getPinId(val) {
     val = parseInt(val.replace(PIN, ''));
-    console.log(val);
     return val;
 }
 
 function pushToAry(name, val) {
     var friendlyName = PIN + name.toString();
     pins[friendlyName] = val;
-    console.log(friendlyName);
+    console.log(getPinId(friendlyName));
 }
 
 pushToAry(1, NA);
