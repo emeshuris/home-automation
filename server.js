@@ -50,7 +50,7 @@ router.route('/bears/:bear_id/:bear_on')
             var turnedOn = req.params.bear_on;
             console.log('Value to be written: ' + turnedOn);
 
-            led.setDirection('in')
+            led.setDirection('out')
             led.writeSync(turnedOn);
 /*
             if (turnedOn == 1) {
