@@ -21,6 +21,10 @@ var pins = new Array();
 
 for (var i = 1; i <= 26; i++) {
     var obj = {};
+    var nonExposedPin = valueInArray(i);
+    
+    console.log(i + ' -na ' + nonExposedPin);
+
     obj[i] = (!valueInArray(i) == true) ? 'off' : 'na';
     pins.push(obj);
 }
@@ -28,11 +32,9 @@ for (var i = 1; i <= 26; i++) {
 function valueInArray(pinId) {
     pinsNotExposed.forEach(function (naPinId) {
         if (naPinId == pinId) {
-            console.log(pinId + ' -eq ' + naPinId);
             return true;
         }
     });
-    console.log(pinId + ' -neq ');
     return false;
 }
 
