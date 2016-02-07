@@ -32,15 +32,22 @@ router.use(function (req, res, next) {
 // on routes that end in /bears
 // ----------------------------------------------------
 router.route('/bears')
-/*
+
 router.route('/bears/:bear_id')
 
     .get(function (req, res) {
-        var led = new Gpio(req.params.bear_id, 'in');
-        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + led.readSync() });
-        led.unexport();
+        var pinId = req.params.bear_id;
+        gpio.setup(pinId, gpio.DIR_IN, readInput);
+
+        function readInput() {
+            gpio.read(pinId, function (err, value) {
+                console.log('The value is ' + value);
+            });
+        }
+
+        res.json({ message: 'Pin: ' + req.params.bear_id + ' State: ' + 1 });
     })
-*/
+
 router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
@@ -56,15 +63,15 @@ router.route('/bears/:bear_id/:bear_on')
                 console.log('Written to pin');
             });
         }
-/*
-        gpio.setup(pinId, gpio.DIR_IN, readInput);
-
-        function readInput() {
-            gpio.read(pinId, function (err, value) {
-                console.log('The value is ' + value);
-            });
-        }
-        */
+        /*
+                gpio.setup(pinId, gpio.DIR_IN, readInput);
+        
+                function readInput() {
+                    gpio.read(pinId, function (err, value) {
+                        console.log('The value is ' + value);
+                    });
+                }
+                */
 
         res.json({ message: 'Pin: ' + pinId + ' State: ' + req.params.bear_on });
 
