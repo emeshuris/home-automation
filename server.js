@@ -45,7 +45,7 @@ router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
         var pinId = req.params.bear_id;
-        
+        /*
         gpio.setup(pinId, gpio.DIR_OUT, write);
 
         var turnedOn = !(req.params.bear_on == 1);
@@ -56,7 +56,7 @@ router.route('/bears/:bear_id/:bear_on')
                 console.log('Written to pin');
             });
         }
-
+*/
         gpio.setup(pinId, gpio.DIR_IN, readInput);
 
         function readInput() {
