@@ -44,7 +44,7 @@ router.route('/bears/:bear_id/:bear_on')
 
     .put(function (req, res) {
         var led = new Gpio(req.params.bear_id, 'out');
-        var turnedOn = req.params.bear_on ^ 1;
+        var turnedOn = req.params.bear_on;
         
         console.log('Passed value: ' + req.params.bear_on);
         console.log('Value to be written: ' + turnedOn);
