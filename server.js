@@ -26,7 +26,9 @@ for (var i = 1; i <= 26; i++) {
 }
 
 pinsNotExposed.forEach(function (pinId) {
-    pins[pinId] = 'na';
+    var obj = {};
+    obj[i.toString()] = 'na';
+    pins.push(obj);
 });
 
 // ROUTES FOR OUR API
