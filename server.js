@@ -16,7 +16,11 @@ app.use(bodyParser.json());
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
 
-var pin8Low = true;
+var pins = [];
+
+for (var i = 1; i <= 26; i++) {
+    pins.push(false);
+}
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -38,7 +42,7 @@ router.route('/bears')
 router.route('/bears/:bear_id')
     .get(function (req, res) {
         var pinId = req.params.bear_id;
-        res.json({ message: 'Pin: ' + pinId + ' State: ' + pin8Low });
+        res.json({ message: 'Pin: ' + pinId + ' State: ' + pins[pinId] });
     })
 
 router.route('/bears/:bear_id/:bear_on')
@@ -52,7 +56,7 @@ router.route('/bears/:bear_id/:bear_on')
         function write() {
             gpio.write(pinId, pinLow, function (err) {
                 if (err) throw err;
-                pin8Low = pinLow;
+                pins[pinId] = pinLow;
                 console.log('Written to pin');
             });
         }
