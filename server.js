@@ -21,12 +21,6 @@ var PIN = 'pin';
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
 
-process.on('exit', function () {
-    gpio.destroy(function () {
-        console.log('All pins unexported');
-    });
-});
-
 // ROUTES FOR OUR API
 // =============================================================================
 
@@ -163,3 +157,9 @@ pushToAry(37, OFF);
 pushToAry(38, OFF);
 pushToAry(39, NA);
 pushToAry(40, OFF);
+
+process.on('exit', function () {
+    gpio.destroy(function () {
+        console.log('All pins unexported');
+    });
+});
