@@ -39,7 +39,7 @@ router.use(function (req, res, next) {
 // ----------------------------------------------------
 router.route('/bears')
     .get(function (req, res) {
-        var objMap = {"JSObject" : pins};
+        var objMap = { "JSObject": pins };
         res.json({ message: JSON.stringify(objMap) });
     })
 
@@ -56,6 +56,9 @@ router.route('/bears/:bear_id/:bear_on')
         var currentPinValue = getPin(passedId);
         var pinId = passedId;
         var pinOn = (passedValue == ON) ? true : false;
+        var message = '';
+
+        var performAction = true;
 
         console.log('passedValue: ' + passedValue);
         console.log('passedId: ' + passedId);
@@ -64,23 +67,47 @@ router.route('/bears/:bear_id/:bear_on')
         console.log('pinOn: ' + pinOn);
 
         if (currentPinValue == passedValue) {
-            console.log('Current state same as requested');
+            message = 'Current state same as requested.';
+            console.log(message);
+
+            performAction = false;
+            res.json({ message: message });
+            return;
         }
 
-        if (pins[passedId] != "na" && currentPinValue != passedValue && availableValues.has(passedValue)) {
+        if (pins[passedId] != "na") {
+            message = 'This pin is not allowed to do work.';
+            console.log(message);
+
+            performAction = false;
+            res.json({ message: message });
+            return;
+        }
+
+        if (availableValues.has(passedValue)) {
+            message = 'Current state same as requested.';
+            console.log(message);
+
+            performAction = false;
+            res.json({ message: message });
+            return;
+        }
+
+        if (performAction) {
             gpio.setup(pinId, gpio.DIR_OUT, updatePin);
 
-            function updatePin(){
+            function updatePin() {
                 gpio.write(pinId, !pinOn, pushToArray);
             }
 
             function pushToArray() {
                 pushToAry(pinId, passedValue);
-                console.log('Written to pin. Value: ' + pins[passedId]);
+                message = 'Written to pin. Value: ' + pins[passedId];
+                console.log(message);
             }
         }
 
-        res.json({ message: '' });
+        res.json({ message: message });
     })
 
 app.use('/api', router);
