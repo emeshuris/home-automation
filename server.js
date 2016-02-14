@@ -59,13 +59,11 @@ router.route('/bears/:bear_id/:bear_on')
         var pinOn = (passedValue == ON) ? true : false;
         var message = '';
 
-        /*
             console.log('passedValue: ' + passedValue);
             console.log('passedId: ' + passedId);
             console.log('currentPinValue: ' + currentPinValue);
             console.log('pinId: ' + pinId);
             console.log('pinOn: ' + pinOn);
-        */
         
         if (currentPinValue == passedValue) {
             message = 'Current state same as requested.';
