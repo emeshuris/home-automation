@@ -1,5 +1,5 @@
 var gpio = require("pi-gpio");
-var pin = 10;
+var pin = 15;
 
 function flashLED(pin, duration) {
     return setInterval(function() {
