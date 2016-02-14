@@ -82,7 +82,10 @@ router.route('/bears/:bear_id/:bear_on')
             } else {
                 gpio.setup(pinId, gpio.DIR_OUT, off);
             }*/
-            gpio.setup(pinId, gpio.DIR_OUT, off);
+            gpio.setup(pinId, gpio.DIR_OUT);
+            
+            gpio.write(pinId, 1);
+            
             pushToAry(pinId, passedValue);
             console.log('Written to pin. Value: ' + pins[passedId]);
             
