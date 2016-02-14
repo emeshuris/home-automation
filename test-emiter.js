@@ -1,18 +1,28 @@
 var gpio = require('rpi-gpio');
-/*
-gpio.on('export', function(channel) {
-    console.log('Channel set: ' + channel);
-});
- */
-gpio.setup(10, gpio.DIR_OUT);
-/*
-function pause() {
-    setTimeout(closePins, 2000);
+ 
+var pin   = 8;
+var delay = 2000;
+var count = 0;
+var max   = 3;
+ 
+gpio.setup(pin, gpio.DIR_OUT, on);
+ 
+function on() {
+    if (count >= max) {
+        gpio.destroy(function() {
+            console.log('Closed pins, now exit');
+        });
+        return;
+    }
+ 
+    setTimeout(function() {
+        gpio.write(pin, 1, off);
+        count += 1;
+    }, delay);
 }
  
-function closePins() {
-    gpio.destroy(function() {
-        console.log('All pins unexported');
-    });
+function off() {
+    setTimeout(function() {
+        gpio.write(pin, 0, on);
+    }, delay);
 }
-*/
