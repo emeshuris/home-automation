@@ -13,8 +13,8 @@ app.use(morgan('dev')); // log requests to the console
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var OFF = 'off';
-var ON = 'on';
+var OFF = '1';
+var ON = '0';
 var NA = 'na';
 
 var port = process.env.PORT || 80; // set our port
@@ -69,7 +69,7 @@ router.route('/bears/:bear_id/:bear_on')
             gpio.setup(pinId, gpio.DIR_OUT, updatePin);
 
             function updatePin(){
-                gpio.write(pinId, pinOn, pushToArray);
+                gpio.write(pinId, !pinOn, pushToArray);
             }
 
             function pushToArray() {
