@@ -105,6 +105,11 @@ router.route('/bears/:bear_id/:bear_on')
 
             message = 'Written to pin. Value: ' + passedValue;
             console.log(message);
+
+            pinsOn.forEach(function (value) {
+                console.log(value);
+            });
+
         }
 
         res.json({ message: message });
