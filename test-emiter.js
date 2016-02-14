@@ -1,12 +1,13 @@
 var gpio = require('rpi-gpio');
 
-var pin = 10;
+var pin = 8;
 var delay = 2000;
 var count = 0;
 var max = 3;
 
 gpio.setup(pin, gpio.DIR_OUT, on);
 gpio.setup(pin, gpio.DIR_OUT, off);
+
 gpio.setup(pin, gpio.DIR_OUT, on);
 gpio.setup(pin, gpio.DIR_OUT, off);
 
