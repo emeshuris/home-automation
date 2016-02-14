@@ -75,17 +75,8 @@ router.route('/bears/:bear_id/:bear_on')
             return;
         }
 
-        if (availableValues.has(pins[passedId])) {
-            message = 'This pin is not allowed to do work. Value: ' + pins[passedId];
-            console.log(message);
-
-            performAction = false;
-            res.json({ message: message });
-            return;
-        }
-
-        if (availableValues.has(passedValue)) {
-            message = 'Current state same as requested.';
+        if (!availableValues.has(pins[passedId])) {
+            message = 'This pin is not allowed to do work.';
             console.log(message);
 
             performAction = false;
