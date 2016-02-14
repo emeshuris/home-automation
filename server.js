@@ -69,7 +69,7 @@ router.route('/bears/:bear_id/:bear_on')
             gpio.setup(pinId, gpio.DIR_OUT, updatePin);
 
             function updatePin(){
-                gpio.write(pinId, pinOn ? 0 : 1, pushToArray);
+                gpio.write(pinId, pinOn, pushToArray);
             }
 
             function pushToArray() {
