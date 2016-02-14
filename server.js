@@ -84,6 +84,15 @@ router.route('/bears/:bear_id/:bear_on')
             return;
         }
 
+        if (!availableValues.has(passedValue)) {
+            message = 'The passed value is invalid.';
+            console.log(message);
+
+            performAction = false;
+            res.json({ message: message });
+            return;
+        }
+        
         if (performAction) {
             gpio.setup(pinId, gpio.DIR_OUT, updatePin);
 
