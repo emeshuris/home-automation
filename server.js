@@ -68,17 +68,13 @@ router.route('/bears/:bear_id/:bear_on')
 
         if (pins[passedId] != "na") {
             gpio.setup(pinId, gpio.DIR_OUT, pinOn ? on : off);
-            
+
             function on() {
-                setTimeout(function () {
-                    gpio.write(pinId, 1);
-                }, 1000);
+                gpio.write(pinId, 1);
             }
 
             function off() {
-                setTimeout(function () {
-                    gpio.write(pinId, 0);
-                }, 1000);
+                gpio.write(pinId, 0);
             }
             /*
             function write() {
