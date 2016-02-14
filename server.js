@@ -38,7 +38,8 @@ router.use(function (req, res, next) {
 // ----------------------------------------------------
 router.route('/bears')
     .get(function (req, res) {
-        res.json({ message: JSON.stringify(pins) });
+        var objMap = {"JSObject" : pins};
+        res.json({ message: JSON.stringify(objMap) });
     })
 
 router.route('/bears/:bear_id')
