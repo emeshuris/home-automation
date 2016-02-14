@@ -17,6 +17,8 @@ var OFF = '1';
 var ON = '0';
 var NA = 'na';
 
+var availableValues = new Set([ON, OFF]);
+
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
 
@@ -65,7 +67,7 @@ router.route('/bears/:bear_id/:bear_on')
             console.log('Current state same as requested');
         }
 
-        if (pins[passedId] != "na" && currentPinValue != passedValue) {
+        if (pins[passedId] != "na" && currentPinValue != passedValue && availableValues.has(passedValue)) {
             gpio.setup(pinId, gpio.DIR_OUT, updatePin);
 
             function updatePin(){
