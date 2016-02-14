@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 var OFF = 'off';
 var ON = 'on';
 var NA = 'na';
-var PIN = '';
 
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
@@ -53,7 +52,7 @@ router.route('/bears/:bear_id/:bear_on')
         var passedValue = req.params.bear_on;
         var passedId = req.params.bear_id;
         var currentPinValue = getPin(passedId);
-        var pinId = getPinId(passedId);
+        var pinId = passedId;
         var pinOn = (passedValue == ON) ? true : false;
 
         console.log('passedValue: ' + passedValue);
@@ -67,14 +66,10 @@ router.route('/bears/:bear_id/:bear_on')
         }
 
         if (pins[passedId] != "na" && currentPinValue != passedValue) {
-            gpio.setup(pinId, gpio.DIR_OUT, pinOn ? on : off);
+            gpio.setup(pinId, gpio.DIR_OUT, updatePin);
 
-            function off() {
-                gpio.write(pinId, 1, pushToArray);
-            }
-
-            function on() {
-                gpio.write(pinId, 0, pushToArray);
+            function updatePin(){
+                gpio.write(pinId, pinOn ? 0 : 1, pushToArray);
             }
 
             function pushToArray() {
@@ -92,14 +87,8 @@ console.log('Magic happens on port ' + port);
 
 var pins = {};
 
-function getPinId(val) {
-    val = parseInt(val.replace(PIN, ''));
-    return val;
-}
-
 function pushToAry(name, val) {
-    var friendlyName = PIN + name.toString();
-    pins[friendlyName] = val;
+    pins[name] = val;
 }
 
 function getPin(name) {
@@ -157,9 +146,3 @@ pushToAry(37, OFF);
 pushToAry(38, OFF);
 pushToAry(39, NA);
 pushToAry(40, OFF);
-
-process.on('exit', function () {
-    gpio.destroy(function () {
-        console.log('All pins unexported');
-    });
-});
