@@ -1,22 +1,12 @@
-var gpio = require("pi-gpio");
-var pin = 15;
+var gpio = require('rpi-gpio');
+gpio.destroy();
+var pin = 8;
 
-function flashLED(pin, duration) {
-    return setInterval(function() {
-        gpio.open(pin, "output", function(err) {
-            gpio.write(pin, pin, function() {
-                setTimeout(function() {
-                    gpio.write(pin, 0, function(err) {
-                        gpio.close(pin);
-                    });
-                }, duration/2);
-            });
-        });
-    }, duration);
+gpio.setup(pin, gpio.DIR_OUT, write);
+ 
+function write() {
+    gpio.write(pin, true, function(err) {
+        if (err) throw err;
+        console.log('Written to pin');
+    });
 }
-
-var intervalID = flashLED(7, 500);
-
-setTimeout(function() {
-    clearInterval(intervalID);
-}, 60000);
