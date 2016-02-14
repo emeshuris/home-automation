@@ -62,7 +62,6 @@ router.route('/bears/:bear_id/:bear_on')
             console.log('passedValue: ' + passedValue);
             console.log('passedId: ' + passedId);
             console.log('currentPinValue: ' + currentPinValue);
-            console.log('pinId: ' + pinId);
             console.log('pinOn: ' + pinOn);
         
         if (currentPinValue == passedValue) {
