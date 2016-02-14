@@ -18,7 +18,7 @@ var OFF = '1';
 var ON = '0';
 var NA = 'na';
 
-var pinsNA = new Set([1,2,4,6,9,14,17,20,25,30,34,39]);
+var pinsNA = new Set([1, 2, 4, 6, 9, 14, 17, 20, 25, 30, 34, 39]);
 var pinsOn = new Set();
 var availableValues = new Set([ON, OFF]);
 
@@ -59,11 +59,13 @@ router.route('/bears/:bear_id/:bear_on')
         var pinOn = (passedValue == ON) ? true : false;
         var message = '';
 
+        /*
             console.log('passedValue: ' + passedValue);
             console.log('passedId: ' + passedId);
             console.log('currentPinValue: ' + currentPinValue);
             console.log('pinOn: ' + pinOn);
-        
+        */
+
         if (currentPinValue == passedValue) {
             message = 'Current state same as requested.';
             console.log(message);
@@ -95,12 +97,12 @@ router.route('/bears/:bear_id/:bear_on')
         }
 
         function pushToArray() {
-            if (passedValue == ON){
+            if (passedValue == ON) {
                 pinsOn.add(passedId);
-            }else{
+            } else {
                 pinsOn.delete(passedId);
             }
-            
+
             message = 'Written to pin. Value: ' + passedValue;
             console.log(message);
         }
