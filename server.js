@@ -45,7 +45,7 @@ router.route('/bears/:bear_id')
     .get(function (req, res) {
         var passedId = req.params.bear_id;
         console.log('passedId: ' + passedId);
-        console.log('value: ' + pins[passedId]);
+        console.log('value: ' + pins[PIN + passedId]);
         
         res.json({ message: pins[passedId] });
     })
