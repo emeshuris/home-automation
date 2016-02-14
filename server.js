@@ -21,6 +21,9 @@ var PIN = 'pin';
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
 
+gpio.on('export', function(channel) {
+    console.log('Channel set: ' + channel);
+});
 
 // ROUTES FOR OUR API
 // =============================================================================
