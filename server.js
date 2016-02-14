@@ -157,9 +157,9 @@ pushToAry(39, NA);
 pushToAry(40, OFF);
 
 function on(pin) {
-    gpio.write(pin, 1);
+    gpio.write(pin, 0);
 }
 
 function off(pin) {
-    gpio.write(pin, 0);
+    gpio.write(pin, 1);
 }
