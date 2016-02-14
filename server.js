@@ -75,7 +75,7 @@ router.route('/bears/:bear_id/:bear_on')
             return;
         }
 
-        if (!pinsNA.has(passedId)) {
+        if (pinsNA.has(passedId)) {
             message = 'This pin is not allowed to do work.';
             console.log(message);
 
