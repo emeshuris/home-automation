@@ -22,9 +22,9 @@ var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
 
 gpio.setup(10, gpio.DIR_OUT, write);
- 
+
 function write() {
-    gpio.write(10, true, function(err) {
+    gpio.write(10, true, function (err) {
         if (err) throw err;
         console.log('Written to pin');
     });
@@ -76,6 +76,11 @@ router.route('/bears/:bear_id/:bear_on')
         }
 
         if (pins[passedId] != "na" && currentPinValue != passedValue) {
+            gpio.setup(pinId, gpio.DIR_OUT, pinOn ? on : off);
+            pushToAry(pinId, passedValue);
+            console.log('Written to pin. Value: ' + pins[passedId]);
+            
+            /*
             gpio.setup(pinId, gpio.DIR_OUT, write);
             
             function write() {
@@ -85,7 +90,7 @@ router.route('/bears/:bear_id/:bear_on')
                     pushToAry(pinId, passedValue);
                     console.log('Written to pin. Value: ' + pins[passedId]);
                 });
-            }
+            }*/
         }
 
         res.json({ message: '' });
@@ -163,3 +168,11 @@ pushToAry(37, OFF);
 pushToAry(38, OFF);
 pushToAry(39, NA);
 pushToAry(40, OFF);
+
+function on(pin) {
+    gpio.write(pin, 1);
+}
+
+function off(pin) {
+    gpio.write(pin, 0);
+}
