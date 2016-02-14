@@ -66,18 +66,30 @@ router.route('/bears/:bear_id/:bear_on')
             console.log('Current state same as requested');
         }
 
-        //if (pins[passedId] != "na" && currentPinValue != passedValue) {
         if (pins[passedId] != "na") {
             gpio.setup(pinId, gpio.DIR_OUT, pinOn ? on : off);
             
-            /*function write() {
+            function on() {
+                setTimeout(function () {
+                    gpio.write(pinId, 1);
+                }, 1000);
+            }
+
+            function off() {
+                setTimeout(function () {
+                    gpio.write(pinId, 0);
+                }, 1000);
+            }
+            /*
+            function write() {
                 gpio.write(pinId, true, function (err) {
-                    if (err) throw err;                
+                    if (err) throw err;
 
                     pushToAry(pinId, passedValue);
                     console.log('Written to pin. Value: ' + pins[passedId]);
                 });
-            }*/
+            }
+            */
         }
 
         res.json({ message: '' });
@@ -155,11 +167,3 @@ pushToAry(37, OFF);
 pushToAry(38, OFF);
 pushToAry(39, NA);
 pushToAry(40, OFF);
-
-function on(pin) {
-    gpio.write(pin, 0);
-}
-
-function off(pin) {
-    gpio.write(pin, 1);
-}
