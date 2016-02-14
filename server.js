@@ -25,6 +25,9 @@ gpio.destroy(function () {
     console.log('All pins unexported');
 });
 
+gpio.on('export', function(channel) {
+    console.log('Channel set: ' + channel);
+});
 
 // ROUTES FOR OUR API
 // =============================================================================
