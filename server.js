@@ -76,7 +76,7 @@ router.route('/bears/:bear_id/:bear_on')
         }
 
         if (availableValues.has(pins[passedId])) {
-            message = 'This pin is not allowed to do work.';
+            message = 'This pin is not allowed to do work. Value: ' + pins[passedId];
             console.log(message);
 
             performAction = false;
