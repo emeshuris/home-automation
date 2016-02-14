@@ -44,6 +44,8 @@ router.route('/bears')
 router.route('/bears/:bear_id')
     .get(function (req, res) {
         var passedId = req.params.bear_id;
+        console.log('passedId: ' + ' ' + passedId);
+        
         res.json({ message: pins[passedId] });
     })
 
@@ -98,7 +100,6 @@ function getPinId(val) {
 
 function pushToAry(name, val) {
     var friendlyName = PIN + name.toString();
-    console.log(friendlyName + ' ' + val);
     pins[friendlyName] = val;
 }
 
