@@ -58,19 +58,18 @@ router.route('/bears/:bear_id/:bear_on')
         var pinOn = (passedValue == ON) ? true : false;
         var message = '';
 
-        var performAction = true;
-
-        console.log('passedValue: ' + passedValue);
-        console.log('passedId: ' + passedId);
-        console.log('currentPinValue: ' + currentPinValue);
-        console.log('pinId: ' + pinId);
-        console.log('pinOn: ' + pinOn);
-
+        /*
+            console.log('passedValue: ' + passedValue);
+            console.log('passedId: ' + passedId);
+            console.log('currentPinValue: ' + currentPinValue);
+            console.log('pinId: ' + pinId);
+            console.log('pinOn: ' + pinOn);
+        */
+        
         if (currentPinValue == passedValue) {
             message = 'Current state same as requested.';
             console.log(message);
 
-            performAction = false;
             res.json({ message: message });
             return;
         }
@@ -79,7 +78,6 @@ router.route('/bears/:bear_id/:bear_on')
             message = 'This pin is not allowed to do work.';
             console.log(message);
 
-            performAction = false;
             res.json({ message: message });
             return;
         }
@@ -88,23 +86,20 @@ router.route('/bears/:bear_id/:bear_on')
             message = 'The passed value is invalid.';
             console.log(message);
 
-            performAction = false;
             res.json({ message: message });
             return;
         }
-        
-        if (performAction) {
-            gpio.setup(pinId, gpio.DIR_OUT, updatePin);
 
-            function updatePin() {
-                gpio.write(pinId, !pinOn, pushToArray);
-            }
+        gpio.setup(pinId, gpio.DIR_OUT, updatePin);
 
-            function pushToArray() {
-                pushToAry(pinId, passedValue);
-                message = 'Written to pin. Value: ' + pins[passedId];
-                console.log(message);
-            }
+        function updatePin() {
+            gpio.write(pinId, !pinOn, pushToArray);
+        }
+
+        function pushToArray() {
+            pushToAry(pinId, passedValue);
+            message = 'Written to pin. Value: ' + pins[passedId];
+            console.log(message);
         }
 
         res.json({ message: message });
