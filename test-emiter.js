@@ -6,6 +6,7 @@ gpio.on('export', function(channel) {
  
 gpio.setup(7, gpio.DIR_OUT);
 gpio.setup(15, gpio.DIR_OUT);
+gpio.setup(10, gpio.DIR_OUT);
 gpio.setup(16, gpio.DIR_OUT, pause);
  
 function pause() {
