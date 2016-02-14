@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 var OFF = 'off';
 var ON = 'on';
 var NA = 'na';
-var PIN = 'pin';
+var PIN = '';
 
 var port = process.env.PORT || 80; // set our port
 var Bear = require('./app/models/bear');
