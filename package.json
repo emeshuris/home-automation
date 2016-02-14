@@ -21,6 +21,7 @@
     "express": "~4.0.0",
     "mongoose": "^4.3.7",
     "morgan": "1.6.1",
-    "rpi-gpio": "0.7.0"
+    "rpi-gpio": "0.7.0",
+    "fastgpio": "0.0.3"
   }
 }

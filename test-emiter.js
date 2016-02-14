@@ -1,11 +1,6 @@
-var gpio = require('rpi-gpio');
-gpio.destroy();
- 
-gpio.setup(10, gpio.DIR_OUT, write);
- 
-function write() {
-    gpio.write(10, true, function(err) {
-        if (err) throw err;
-        console.log('Written to pin');
-    });
-}
+var fastgpio = require( "fastgpio" );
+var pin = 15;
+
+fastgpio.prepareGPIO(pin);
+fastgpio.set(pin);
+fastgpio.unset(pin);
