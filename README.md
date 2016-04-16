@@ -11,3 +11,5 @@ to start, download the source files into a new directory on the RPi, and run nod
 this starts the http server on localthost using port 3000
 
 When a user now browses to http://[your RPi's IP Address]:3000, the index.html will be loaded ad displayed (served by myapi.js) index.html loads the myclient.js file which contains the JSON query logic.
+
+User...
