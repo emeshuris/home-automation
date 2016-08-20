@@ -1,3 +1,1 @@
-[Pipeline] echo
-hello from Pipeline
-[Pipeline] End of Pipeline
+echo 'hello from Pipeline'
